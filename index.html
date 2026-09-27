@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Tic-Tac-Toe</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7815369960044142"
+     crossorigin="anonymous"></script>
+  <link rel="icon" type="image/png" href="images\favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#548687">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+
+  <div id="landingPage" class="centered-card">
+    <h1>Tic-Tac-Toe<br>🎮</h1>
+    <input type="text" id="playerName" placeholder="Enter your name" maxlength="12">
+
+    <div class="room-actions">
+      <button id="createRoomBtn">Create Room</button>
+      <button id="playAiBtn" style="background: linear-gradient(90deg, #548687, #3b5f60);">Play vs AI 🤖</button>
+    </div>
+
+    <div class="room-actions">
+      <input type="text" id="roomInput" placeholder="Enter Room Code">
+      <button id="joinRoomBtn">Join Room</button>
+    </div>
+    <p class="status-msg" id="statusMsg">Create or join a room to start</p>
+  </div>
+
+  <div id="gamePage" class="hide">
+    <div class="game-header">
+      <div id="alertContainer" class="alert-box hide"></div>
+      <div id="joinNotification" class="join-toast hide"></div>
+
+      <div id="roomUtilityRow" class="room-utility-row">
+        <h3 id="roomInfo">Room Code: —</h3>
+        <div class="button-group">
+          <button id="copyCodeBtn" class="action-sm-btn">📋 Copy</button>
+          <button id="shareLinkBtn" class="action-sm-btn">🔗 Share</button>
+        </div>
+      </div>
+
+      <div class="versus-container">
+        <div id="profileLeft" class="player-profile">
+          <div class="avatar-wrapper">
+            <div id="avatarSymbolLeft" class="avatar-circle">—</div>
+            <div id="statusDotLeft" class="status-dot disconnected"></div>
+            <div id="emojiBubbleLeft" class="profile-emoji-bubble hide"></div>
+          </div>
+          <div class="player-meta">
+            <span id="leftNameDisplay" class="p-name">Waiting...</span>
+            <span class="p-score-label">Wins: <strong id="leftScore">0</strong></span>
+          </div>
+        </div>
+
+        <div class="vs-divider">
+          <span class="vs-text">VS</span>
+          <div class="draw-counter-box">
+            <small>Draws</small>
+            <strong id="drawsScore">0</strong>
+          </div>
+        </div>
+
+        <div id="profileRight" class="player-profile">
+          <div class="avatar-wrapper">
+            <div id="avatarSymbolRight" class="avatar-circle">—</div>
+            <div id="statusDotRight" class="status-dot disconnected"></div>
+            <div id="emojiBubbleRight" class="profile-emoji-bubble hide"></div>
+          </div>
+          <div class="player-meta">
+            <span id="rightNameDisplay" class="p-name">Waiting...</span>
+            <span class="p-score-label">Wins: <strong id="rightScore">0</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <h2 id="turnIndicator">Turn: —</h2>
+      <p id="gameStatus"></p>
+      <h2 id="winnerBanner" class="hide"></h2>
+    </div>
+
+    <div class="game-container">
+      <div class="interactive-board-wrapper">
+        <div class="board">
+          <button class="box" data-i="0"></button>
+          <button class="box" data-i="1"></button>
+          <button class="box" data-i="2"></button>
+          <button class="box" data-i="3"></button>
+          <button class="box" data-i="4"></button>
+          <button class="box" data-i="5"></button>
+          <button class="box" data-i="6"></button>
+          <button class="box" data-i="7"></button>
+          <button class="box" data-i="8"></button>
+        </div>
+        <div id="winningLine" class="winning-strike hide"></div>
+      </div>
+    </div>
+    
+    <div class="emoji-tray">
+      <button class="emoji-trigger" data-emoji="😂">😂</button>
+      <button class="emoji-trigger" data-emoji="😮">😮</button>
+      <button class="emoji-trigger" data-emoji="👑">👑</button>
+      <button class="emoji-trigger" data-emoji="👍">👍</button>
+      <button class="emoji-trigger" data-emoji="💥">💥</button>
+    </div>
+
+    <div class="controls">
+      <button id="resetBtn" class="hide">Play Again 🔄</button>
+      <button id="leaveBtn">Leave Room</button>
+    </div>
+  </div>
+
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('PWA Service Worker Registered successfully!', reg))
+          .catch(err => console.error('Service Worker registration failed: ', err));
+      });
+    }
+  </script>
+</body>
+</body>
+</html>
